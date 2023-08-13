@@ -3,6 +3,7 @@ const config = require("./config");
 const fs = require("fs");
 const path = require("path");
 let sequelize;
+console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   sequelize = new Sequelize(
     config.production.database,
