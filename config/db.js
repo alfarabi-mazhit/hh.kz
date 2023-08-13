@@ -1,7 +1,8 @@
 const { Sequelize } = require("sequelize");
 const config = require("./config");
 let sequelize;
-if (process.env === "production") {
+if (process.env.NODE_ENV === "production") {
+  console.log("alfa");
   sequelize = new Sequelize(
     config.production.database,
     config.production.username,
