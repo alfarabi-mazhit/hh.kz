@@ -1,8 +1,9 @@
 const { Sequelize } = require("sequelize");
 const config = require("./config");
+const fs = require("fs");
+const path = require("path");
 let sequelize;
 if (process.env.NODE_ENV === "production") {
-  console.log("alfa");
   sequelize = new Sequelize(
     config.production.database,
     config.production.username,
@@ -11,6 +12,11 @@ if (process.env.NODE_ENV === "production") {
       host: config.production.host,
       port: config.production.port,
       dialect: config.production.dialect,
+      dialectOptions: {
+        ssl: {
+          ca: fs.readFileSync(path.resolve("config", "./ca-certificate.crt")),
+        },
+      },
     }
   );
 } else {
