@@ -55,7 +55,7 @@ Vacancy.belongsTo(Experience, {
 });
 
 Vacancy.belongsTo(EmploymentType, {
-  foreignKey: "EmploymentTypeId",
+  foreignKey: "employmentTypeId",
   as: "employmentType",
 });
 

@@ -7,16 +7,23 @@ const { jwtOptions } = require("./passport");
 const Company = require("./Company");
 const bcrypt = require("bcrypt");
 
-const sendVerificationEmail = (req, res) => {
+const sendVerificationEmail = async(req, res) => {
   console.log(req.body);
   const code = "HH" + Date.now();
-  AuthCode.create({
+  const obj = AuthCode.create({
     email: req.body.email,
     code,
     valid_till: Date.now() + 120000,
   });
-  sendEmail(req.body.email, "Код авторизации hh.kz ", code);
-  res.status(200).end();
+  const { error, message } = await sendEmail(
+    req.body.email,
+    "Код авторизации hh.kz ",
+    code
+  );
+  if (error) {
+    obj.destroy();
+    res.status(300).send({ error, message });
+  } else res.status(200).end();
 };
 
 const verifyCode = async (req, res) => {

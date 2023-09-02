@@ -13,11 +13,7 @@ if (process.env.NODE_ENV === "production") {
       host: config.production.host,
       port: config.production.port,
       dialect: config.production.dialect,
-      dialectOptions: {
-        ssl: {
-          ca: fs.readFileSync(path.resolve("config", "./ca-certificate.crt")),
-        },
-      },
+      dialectOptions: config.production.dialectOptions,
     }
   );
 } else {

@@ -3,9 +3,6 @@ const sequelize = require("../../../config/db");
 const City = require("../../region/City");
 const Country = require("../../region/Country");
 const User = require("../../auth/User");
-// const WorkingHistory = require("./WorkingHistory");
-// const Education = require("./Education");
-// const EmploymentType = require("../../employment-type/EmploymentType");
 
 const Resume = sequelize.define("Resume", {
   first_name: {
